@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff66b3;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #ff3385;
+            transform: scale(1.1);
+        }
+        .message {
+            display: none;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #800040;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        .emoji {
+            display: none;
+            font-size: 50px;
+            margin-top: 20px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 1s, transform 1s;
+        }
+        .cake {
+            display: none;
+            margin-top: 20px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 1s, transform 1s;
+        }
+        .surprise {
+            display: none;
+            font-size: 40px;
+            color: #ff3385;
+            margin-top: 20px;
+            animation: bounce 1.5s infinite;
+        }
+        .flower {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+        .photo {
+            display: none;
+            margin-top: 20px;
+            max-width: 40%; /* Mengubah ukuran foto menjadi lebih kecil */
+            max-height: 300px; /* Batasi tinggi foto jika diperlukan */
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 1s, transform 1s;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button id="showMessage">Abis itu, ini yaah sayangkuu</button>
+        <button id="showPhoto">Klik yang ini dulu pliss</button>
+        <div class="emoji">❤️</div>
+        <div class="cake">🎂</div>
+        <p class="surprise">HBDDD YG KE 17! 🎉</p>
+        <p class="message">HBD sayangku jopiiiw, Semoga umur mu yang ke 17 selalu bahagia . 🎉💕</p>
+        <img class="photo" src="IMG-20241207-WA0035.jpg" alt="Birthday Photo">
+    </div>
+
+    <script>
+        document.getElementById("showMessage").addEventListener("click", function() {
+            const button = this;
+            const emoji = document.querySelector(".emoji");
+            const cake = document.querySelector(".cake");
+            const surprise = document.querySelector(".surprise");
+            const message = document.querySelector(".message");
+
+            button.style.display = "none";
+
+            // Display elements
+            emoji.style.display = "block";
+            cake.style.display = "block";
+            surprise.style.display = "block";
+            message.style.display = "block";
+
+            setTimeout(() => {
+                emoji.style.opacity = "1";
+                emoji.style.transform = "scale(1)";
+                cake.style.opacity = "1";
+                cake.style.transform = "scale(1)";
+                message.style.opacity = "1";
+            }, 100);
+
+            createFlowers();
+        });
+
+        document.getElementById("showPhoto").addEventListener("click", function() {
+            const photo = document.querySelector(".photo");
+            photo.style.display = "block";
+            setTimeout(() => {
+                photo.style.opacity = "1";
+                photo.style.transform = "scale(1)";
+            }, 100); // Menambahkan efek transisi halus
+        });
+
+        function createFlowers() {
+            const emojis = ["🌸", "🌺", "🌼", "💐", "🌷"];
+
+            for (let i = 0; i < 20; i++) {
+                const flower = document.createElement("div");
+                flower.className = "flower";
+                flower.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                flower.style.left = Math.random() * 100 + "vw";
+                flower.style.animationDelay = Math.random() * 2 + "s";
+                flower.style.fontSize = Math.random() * 30 + 20 + "px";
+
+                document.body.appendChild(flower);
+
+                setTimeout(() => {
+                    flower.remove();
+                }, 4000);
+            }
+        }
+    </script>
+</body>
+</html>
